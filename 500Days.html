@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>《时序＆星绊》500 天创作纪念 · 移动端长图</title>
+<style>
+  :root{
+    --bg:#0a0913;
+    --panel:rgba(255,255,255,.035);
+    --line:rgba(201,160,74,.32);
+    --line-soft:rgba(201,160,74,.16);
+    --gold:#c9a04a;
+    --gold-2:#e8cf8f;
+    --violet:#9b8fd8;
+    --teal:#5fb0b0;
+    --text:#e9e4d8;
+    --muted:#a59c88;
+  }
+  *{box-sizing:border-box;}
+  html{scrollbar-color:rgba(201,160,74,.45) rgba(255,255,255,.035);scrollbar-width:thin;}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-track{background:rgba(255,255,255,.035);}
+  ::-webkit-scrollbar-thumb{background:rgba(201,160,74,.32);}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(201,160,74,.62);}
+  ::selection{background:rgba(201,160,74,.3);color:#fff;}
+
+  body{
+    margin:0;background:#060510;color:var(--text);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.8;-webkit-font-smoothing:antialiased;overflow-y:auto;
+  }
+  .page{
+    position:relative;max-width:430px;margin:0 auto;padding:0 20px 46px;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(1.5px 1.5px at 24px 34px, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.5px 1.5px at 150px 96px, rgba(232,207,143,.55), transparent),
+      radial-gradient(1px 1px at 78px 168px, rgba(255,255,255,.42), transparent),
+      radial-gradient(1px 1px at 214px 60px, rgba(255,255,255,.38), transparent),
+      radial-gradient(1px 1px at 190px 214px, rgba(232,207,143,.4), transparent);
+    background-size:250px 250px;
+    background-repeat:repeat;
+  }
+  .page::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:420px;pointer-events:none;
+    background:
+      radial-gradient(280px 200px at 50% -40px, rgba(155,143,216,.22), transparent 70%),
+      radial-gradient(240px 180px at 85% 40px, rgba(201,160,74,.14), transparent 72%);
+  }
+  .serif{font-family:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;}
+  .inner{position:relative;z-index:1;}
+
+  /* HERO */
+  .hero{text-align:center;padding:46px 4px 30px;border-bottom:1px solid var(--line);}
+  .hero .kicker{font-size:.68rem;letter-spacing:.34em;color:var(--gold);text-indent:.34em;margin-bottom:16px;}
+  .hero .series{font-size:1rem;letter-spacing:.26em;color:var(--muted);text-indent:.26em;}
+  .hero h1{font-size:1.32rem;font-weight:600;letter-spacing:.06em;margin:.5em 0 .1em;}
+  .hero .fivehun{
+    display:block;font-size:6.4rem;line-height:1;font-weight:600;letter-spacing:.01em;
+    background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,#8a6a24);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 40px rgba(201,160,74,.3);margin:.04em 0 .02em;
+  }
+  .hero .days{font-size:.72rem;letter-spacing:.44em;color:var(--gold);text-indent:.44em;}
+  .hero .tag{margin-top:18px;font-size:.86rem;letter-spacing:.14em;color:var(--muted);}
+  .hero .tag::before,.hero .tag::after{content:"✦";color:var(--gold);font-size:.7rem;margin:0 .6em;}
+  .hero .date{margin-top:12px;font-size:.72rem;letter-spacing:.1em;color:var(--gold-2);}
+
+  /* SECTION */
+  section{margin:34px 0 0;}
+  .sh{display:flex;align-items:baseline;gap:10px;border-left:3px solid var(--gold);padding-left:11px;margin-bottom:18px;}
+  .sh .no{font-family:"Songti SC",serif;color:var(--gold);font-size:1rem;}
+  .sh h2{font-size:1.02rem;font-weight:600;letter-spacing:.08em;margin:0;}
+  .lead{color:var(--muted);font-size:.82rem;margin:-8px 0 16px;}
+  .lead b,.p b,.t span b{color:var(--gold-2);}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .stat{border:1px solid var(--line-soft);background:var(--panel);padding:12px 12px 11px;}
+  .stat .n{font-size:1.6rem;font-weight:600;color:var(--gold-2);line-height:1.1;}
+  .stat .n small{font-size:.66rem;color:var(--gold);margin-left:2px;font-weight:400;}
+  .stat .l{font-size:.74rem;margin-top:4px;letter-spacing:.04em;}
+  .stat .d{font-size:.62rem;color:var(--muted);margin-top:2px;}
+
+  /* PANEL / CHIPS */
+  .panel{border:1px solid var(--line-soft);background:var(--panel);padding:14px;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{border:1px solid var(--line-soft);padding:3px 8px;font-size:.72rem;letter-spacing:.02em;}
+  .chip .q{color:var(--muted);font-size:.62rem;margin-left:4px;}
+  .chip.v{border-color:rgba(155,143,216,.36);}
+  .chip.t{border-color:rgba(95,176,176,.36);}
+  .sub{color:var(--gold-2);font-size:.82rem;letter-spacing:.06em;margin:0 0 9px;}
+
+  /* TIMELINE */
+  .tl{list-style:none;margin:0;padding:0 0 0 22px;position:relative;}
+  .tl::before{content:"";position:absolute;left:5px;top:5px;bottom:5px;width:1px;background:linear-gradient(180deg,var(--gold),rgba(201,160,74,.08));}
+  .tl li{position:relative;margin-bottom:15px;}
+  .tl li::before{content:"✦";position:absolute;left:-22px;top:2px;color:var(--gold);font-size:.72rem;background:var(--bg);line-height:1;}
+  .tl .yr{color:var(--gold-2);font-size:.68rem;letter-spacing:.14em;font-family:"Songti SC",serif;}
+  .tl .tt{font-size:.86rem;font-weight:600;letter-spacing:.04em;margin:1px 0 2px;}
+  .tl .dd{color:var(--muted);font-size:.76rem;}
+
+  /* ROSTER */
+  .team{border:1px solid var(--line-soft);background:var(--panel);padding:11px 13px;}
+  .team + .team{margin-top:8px;}
+  .team .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .team .h b{color:var(--gold-2);font-size:.86rem;letter-spacing:.05em;}
+  .team .h span{color:var(--muted);font-size:.66rem;white-space:nowrap;}
+  .team p{margin:5px 0 0;font-size:.76rem;line-height:1.65;}
+  .team .role{display:block;color:var(--muted);font-size:.66rem;margin-top:3px;}
+
+  /* WIKI */
+  .wiki{border:1px solid var(--line);background:linear-gradient(180deg,rgba(155,143,216,.08),rgba(10,9,19,.45));margin-top:10px;}
+  .wiki .bar{display:flex;align-items:center;gap:6px;padding:8px 11px;border-bottom:1px solid var(--line-soft);}
+  .wiki .dot{width:6px;height:6px;border-radius:50%;border:1px solid var(--line);}
+  .wiki .dot.g{background:rgba(201,160,74,.55);}
+  .wiki .url{margin-left:auto;font-size:.62rem;color:var(--muted);letter-spacing:.08em;font-family:ui-monospace,Menlo,monospace;}
+  .wiki .search{margin:10px 11px 0;border:1px solid var(--line-soft);padding:7px 10px;font-size:.72rem;color:var(--muted);}
+  .wiki .cats{display:flex;flex-wrap:wrap;gap:5px;padding:9px 11px 11px;}
+  .wiki .cats span{font-size:.66rem;border:1px solid var(--line-soft);padding:3px 7px;}
+  .wiki .cats span.on{color:var(--gold-2);border-color:var(--line);background:rgba(201,160,74,.09);}
+  .wiki .e{border-top:1px solid var(--line-soft);padding:8px 11px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+  .wiki .e b{font-size:.76rem;font-weight:600;}
+  .wiki .e b::before{content:"✦ ";color:var(--gold);font-size:.62rem;}
+  .wiki .e span{color:var(--muted);font-size:.62rem;white-space:nowrap;}
+
+  /* STORY */
+  .story{border-top:1px solid var(--line-soft);padding:16px 2px;}
+  .story:last-child{border-bottom:1px solid var(--line-soft);}
+  .story .idx{color:var(--gold);font-size:.68rem;letter-spacing:.14em;margin-bottom:4px;}
+  .story .who{color:var(--gold-2);font-size:.94rem;letter-spacing:.03em;line-height:1.5;margin-bottom:3px;}
+  .story .from{color:var(--muted);font-size:.64rem;letter-spacing:.06em;margin-bottom:9px;}
+  .story p{margin:0;font-size:.82rem;line-height:1.9;}
+
+  /* PENDING */
+  .pending div{font-size:.78rem;color:var(--muted);border:1px dashed var(--line-soft);padding:8px 11px;display:flex;gap:7px;align-items:flex-start;}
+  .pending div + div{margin-top:7px;}
+  .pending div::before{content:"✧";color:var(--gold);font-size:.72rem;line-height:1.7;}
+
+  /* CLOSING */
+  .closing{text-align:center;border:1px solid var(--line);padding:26px 18px;margin-top:34px;background:linear-gradient(180deg,rgba(201,160,74,.07),transparent);}
+  .closing .big{font-size:.98rem;color:var(--gold-2);letter-spacing:.1em;line-height:2;}
+  .closing .sm{color:var(--muted);font-size:.76rem;margin-top:14px;letter-spacing:.06em;line-height:1.9;}
+
+  .author{border:1px solid var(--line);background:linear-gradient(180deg,rgba(155,143,216,.1),transparent);padding:28px 20px;margin-top:14px;text-align:center;}
+  .author .t{color:var(--muted);font-size:.64rem;letter-spacing:.32em;text-indent:.32em;margin-bottom:14px;}
+  .author .q{font-family:"Songti SC","Noto Serif SC",serif;font-size:.9rem;line-height:2.15;color:var(--gold-2);}
+  .author .sig{margin-top:16px;color:var(--text);font-size:.82rem;letter-spacing:.2em;}
+
+  .foot{margin-top:26px;text-align:center;color:var(--muted);font-size:.64rem;letter-spacing:.16em;line-height:1.9;}
+</style>
+</head>
+<body>
+<div class="page"><div class="inner">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kicker">DIM-VN · 五零次元工作室</div>
+    <div class="series">《时序＆星绊》</div>
+    <h1>500 天创作纪念</h1>
+    <span class="fivehun">500</span>
+    <div class="days">DAYS OF CREATION</div>
+    <div class="tag">时序之下，星绊相牵</div>
+    <div class="date">2025-06-02 —— 2026-10-15<br>第十三纪元「星绊纪元」</div>
+  </header>
+
+  <!-- 一 -->
+  <section>
+    <div class="sh"><span class="no">一</span><h2>创作总览</h2></div>
+    <div class="stats">
+      <div class="stat"><div class="n">500<small>天</small></div><div class="l">创作历程</div><div class="d">自 2025-06-02 起</div></div>
+      <div class="stat"><div class="n">13</div><div class="l">世界周期</div><div class="d">已展开 3 个纪元</div></div>
+      <div class="stat"><div class="n">13</div><div class="l">原初约束</div><div class="d">世界基盘法则</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">「界」</div><div class="d">环绕 / 叠层 / 维度</div></div>
+      <div class="stat"><div class="n">20</div><div class="l">区域档案</div><div class="d">地面 · 天界 · 地核</div></div>
+      <div class="stat"><div class="n">53</div><div class="l">角色条目</div><div class="d">49 位角色卡图鉴</div></div>
+      <div class="stat"><div class="n">109</div><div class="l">未整理角色</div><div class="d">待建档</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">核心组织</div><div class="d">护卫队 · 军团 · 公司</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">神使</div><div class="d">涅 · 隳 · 翾 · 冥</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">创世神</div><div class="d">梦 · 羽 · 袭</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">罪之咒</div><div class="d">第九纪元最强残响</div></div>
+      <div class="stat"><div class="n">14</div><div class="l">系列篇章</div><div class="d">含前传与终幕</div></div>
+    </div>
+  </section>
+
+  <!-- 二 -->
+  <section>
+    <div class="sh"><span class="no">二</span><h2>世界基石</h2></div>
+    <p class="lead">本源意志立下 <b>十三项原初约束</b>，后分裂为三创世神：<b>梦</b>（稳定基盘）、<b>羽</b>（管理世界）、<b>袭</b>（抑制残响）。</p>
+    <div class="panel">
+      <div class="chips">
+        <span class="chip">存在之锚</span><span class="chip">时间之矢</span><span class="chip">因果之链</span>
+        <span class="chip">生命之义</span><span class="chip">自由之旋</span><span class="chip">共鸣之弦</span>
+        <span class="chip">秩理之潮</span><span class="chip">美之韵律</span><span class="chip">爱之引力</span>
+        <span class="chip">痛之刻痕</span><span class="chip">死之门槛</span><span class="chip">梦之蓝图</span>
+        <span class="chip v">希望之光</span>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:10px;">
+      <div class="sub">六界</div>
+      <div class="chips">
+        <span class="chip">星界</span><span class="chip">天界</span><span class="chip">尘界 / 主世界</span>
+        <span class="chip">地下 · 地核</span><span class="chip v">维度界</span><span class="chip t">世界背面</span>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:10px;">
+      <div class="sub">已点亮的纪元</div>
+      <div class="chips">
+        <span class="chip">第九 · 纯念纪元</span>
+        <span class="chip">第十二 · 黄昏诗篇</span>
+        <span class="chip v">第十三 · 星绊纪元（当前）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三 -->
+  <section>
+    <div class="sh"><span class="no">三</span><h2>创作历程</h2></div>
+    <ul class="tl">
+      <li><div class="yr">2025 · 06</div><div class="tt">宇宙立项</div><div class="dd">系列定名，时间线锚定「星绊纪元」。</div></li>
+      <li><div class="yr">奠基期</div><div class="tt">法则先行</div><div class="dd">世界基盘 · 周期 · 规则 · 残响，搭起宇宙骨架。</div></li>
+      <li><div class="yr">展开期</div><div class="tt">山河成形</div><div class="dd">二十片区域逐一建档，从伊梅那到地核伦布利斯。</div></li>
+      <li><div class="yr">群像期</div><div class="tt">群星登场</div><div class="dd">四神使 · 三创世神 · 十二编制 · 四大组织落地。</div></li>
+      <li><div class="yr">落笔期</div><div class="tt">篇章铺陈</div><div class="dd">前传《乌托邦的悖论体》等 14 个篇章登记在册。</div></li>
+      <li><div class="yr">2026 · 10 · 15</div><div class="tt" style="color:var(--gold-2)">第 500 天</div><div class="dd">此刻。星绊纪元仍在进行中。</div></li>
+    </ul>
+  </section>
+
+  <!-- 四 -->
+  <section>
+    <div class="sh"><span class="no">四</span><h2>星图巡礼 · 二十片区域</h2></div>
+    <div class="panel">
+      <div class="chips">
+        <span class="chip">伊梅那 <span class="q">海中翡翠</span></span>
+        <span class="chip">拉薇尔 <span class="q">神之乡</span></span>
+        <span class="chip">梅米纳 <span class="q">最后的庇护所</span></span>
+        <span class="chip">瑞德尼亚 <span class="q">繁花盛开之地</span></span>
+        <span class="chip">怀尔那兹 <span class="q">流光圣地</span></span>
+        <span class="chip">西里弗薇 <span class="q">幻影圆舞曲</span></span>
+        <span class="chip">斯凯里德 <span class="q">湛蓝天镜</span></span>
+        <span class="chip">枫麟华 <span class="q">繁荣圣地</span></span>
+        <span class="chip">极夜乡 <span class="q">长眠之夜</span></span>
+        <span class="chip">特罗斯塔 <span class="q">夜来香暗语</span></span>
+        <span class="chip">德米欧莱 <span class="q">归宿</span></span>
+        <span class="chip">缇雅娜 <span class="q">魔法之源</span></span>
+        <span class="chip">阿卡纳亚 <span class="q">预言之都</span></span>
+        <span class="chip">维伦纳 <span class="q">净明之海</span></span>
+        <span class="chip">伦布利斯 <span class="q">崇尚光明</span></span>
+        <span class="chip v">神界天域 <span class="q">神世代的祝愿</span></span>
+        <span class="chip v">玉衡天 <span class="q">仙灵之界</span></span>
+        <span class="chip">星辉浮岛 <span class="q">繁星寓言之所</span></span>
+        <span class="chip">克梅米拉 <span class="q">流云之谷</span></span>
+        <span class="chip">格里莱 <span class="q">静默堡垒</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 五 -->
+  <section>
+    <div class="sh"><span class="no">五</span><h2>群星名录 · 时空护卫队</h2></div>
+    <div class="team"><div class="h"><b>第一分队</b><span>哨兵＆侦察</span></div><p>艾克斯 · 斯特诺 · 斯黛娜 · 寒烬<span class="role">队长 艾克斯</span></p></div>
+    <div class="team"><div class="h"><b>第二分队</b><span>勘探＆情报</span></div><p>凯特亚 · 菲欧娜 · 罗尔<span class="role">队长 凯特亚</span></p></div>
+    <div class="team"><div class="h"><b>第三分队</b><span>医疗</span></div><p>瑞尔米 · 艾文特 · 艾比莉莉 · 安德里斯<span class="role">队长 瑞尔米</span></p></div>
+    <div class="team"><div class="h"><b>第四分队</b><span>海洋战斗</span></div><p>克莱尔 · 卡霖儿<span class="role">队长 克莱尔</span></p></div>
+    <div class="team"><div class="h"><b>第五分队</b><span>天空战斗</span></div><p>赛加蒂 · 弗米利娅 · 罗米尔<span class="role">队长 赛加蒂</span></p></div>
+    <div class="team"><div class="h"><b>第六分队</b><span>救援</span></div><p>埃利泽 · 雷默 · 怀特<span class="role">队长 埃利泽</span></p></div>
+    <div class="team" style="border-color:var(--line)"><div class="h"><b>第七分队</b><span>正面特战</span></div><p>温妮雅 · 莱露 · 雷米 · 尤利耶<span class="role">队长 温妮雅 · 主线主角团</span></p></div>
+    <div class="team"><div class="h"><b>第八分队</b><span>科研支援</span></div><p>艾丽莎 · 玛尔茏 · 菲利特 · 卡莉<span class="role">队长 艾丽莎</span></p></div>
+    <div class="team"><div class="h"><b>后勤部</b><span>后方支援</span></div><p>克林姆 · 莉莉米 · 织乐 · 愚爱<span class="role">画中世界 · 服装 · 食堂</span></p></div>
+    <div class="team"><div class="h"><b>四大神使</b><span>神系</span></div><p>涅 · 隳 · 翾 · 冥<span class="role">重生 · 毁灭 · 空间 · 时间</span></p></div>
+    <div class="team"><div class="h"><b>歼灭军团</b><span>《歼灭战线》</span></div><p>蚁后 · 奕者 · 浮体 · 花葬<span class="role">机械体 · 反派武力</span></p></div>
+    <div class="team"><div class="h"><b>审视者</b><span>塔罗使者</span></div><p>潘塔克斯 · 珂帕莉安 · 万德里尔 · 斯沃德恩<span class="role">星币 · 圣杯 · 权杖 · 宝剑</span></p></div>
+  </section>
+
+  <!-- 六 -->
+  <section>
+    <div class="sh"><span class="no">六</span><h2>数字化基建</h2></div>
+    <p class="lead">《时序＆星绊》世界观 <b>WIKI</b> 把这 500 天的全部档案，整理成一座可检索、可漫游的线上词条库。</p>
+    <div class="panel">
+      <div class="sub">08_WIKI · 世界观词条库</div>
+      <p style="margin:0;font-size:.82rem;">以 <b>7 大分类、87 条词条</b> 覆盖总纲、区域、角色、组织、生物、作品与创作资料；支持全局搜索与分类导航，点击词条即可<b>在线阅读档案全文</b>，并接入图标缩略图与六界结构总览，内建「返回」逐级回退导航。</p>
+      <div class="chips" style="margin-top:11px;">
+        <span class="chip">全局搜索</span><span class="chip">7 分类 · 87 词条</span>
+        <span class="chip">在线阅读</span><span class="chip v">逐级返回</span>
+      </div>
+    </div>
+    <div class="wiki">
+      <div class="bar"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="url">wiki · 时序＆星绊</span></div>
+      <div class="search">✦ 搜索词条……</div>
+      <div class="cats"><span class="on">总纲</span><span>区域</span><span>角色</span><span>组织</span><span>生物</span><span>作品</span><span>创作资料</span></div>
+      <div class="e"><b>世界基盘</b><span>总纲 · 13 项原初约束</span></div>
+      <div class="e"><b>伊梅那</b><span>区域 · 海中翡翠</span></div>
+      <div class="e"><b>时空护卫队</b><span>组织 · 12 编制</span></div>
+      <div class="e"><b>七罪之咒</b><span>总纲 · 第九纪元残响</span></div>
+    </div>
+  </section>
+
+  <!-- 七 -->
+  <section>
+    <div class="sh"><span class="no">七</span><h2>星河拾光 · 角色小故事</h2></div>
+    <p class="lead">设定表里藏不住的那些小瞬间。</p>
+    <div class="story">
+      <div class="idx">✦ 01</div>
+      <div class="who">翾 × 奥菲 · 一片羽毛</div>
+      <div class="from">《乌托邦的悖论体》·《时空缝隙观察日记》</div>
+      <p>翾掉落人界时，遇到正在练剑的奥菲——那时的她很温柔、练剑很帅气。他二话不说拔下自己一片羽毛，做成项链送给她。许多年后回到神界，他看着她为保护妹妹莉雅，把温柔与懦弱全部封进冷漠暴躁的外壳；于是他嬉皮笑脸地凑上去，发誓要让她重新无忧无虑地笑。而那条旧项链，她一直戴着——<b>绳子换过新的，羽毛边缘早已磨损。</b></p>
+    </div>
+    <div class="story">
+      <div class="idx">✦ 02</div>
+      <div class="who">凯特亚 × 菲欧娜 · 没人见过的笑</div>
+      <div class="from">第二分队</div>
+      <p>飞蛾族的凯特亚因村庄纵火失去妹妹、满身烧伤，常年戴着黑色面罩，整个第二分队没人见过他笑——除了菲欧娜。他会面无表情地给她扎辫子，在她睡着后轻手轻脚地盖好被子。她戴着他送的银框眼镜——<b>但并没有近视。</b></p>
+    </div>
+    <div class="story">
+      <div class="idx">✦ 03</div>
+      <div class="who">织乐 × 寒烬 · 不需要保暖的内衬</div>
+      <div class="from">后勤部 · 第一分队</div>
+      <p>亡灵族的寒烬走路无声，几乎不主动说话。织乐加班时，他会无声地出现，把温度刚好的热茶放在手边；会把幽灵犬留在工坊门口当「哨兵」。而织乐偷偷在他的队服里又加了一层内衬——<b>虽然亡灵根本不需要保暖。</b></p>
+    </div>
+    <div class="story">
+      <div class="idx">✦ 04</div>
+      <div class="who">翾 · 全家福与孤独恐惧症</div>
+      <div class="from">《乌托邦的悖论体》</div>
+      <p>翾永远嬉皮笑脸，可他的孤独恐惧症藏在笑声底下——神明消散、大姐沉睡、二姐被封印、妹妹被诅咒，他一夜之间失去所有家人。他会独处时偷偷拿出那张全家福哭鼻子；每次为救大家「死」前，都先露出一个笑，好让人放心。</p>
+    </div>
+  </section>
+
+  <!-- 八 -->
+  <section>
+    <div class="sh"><span class="no">八</span><h2>仍在书写的空白</h2></div>
+    <div class="pending">
+      <div>创世神「梦 · 羽 · 袭」的具体设定</div>
+      <div>神世代剧情（诸神时代 · 野史）</div>
+      <div>四大神使（涅 · 隳 · 冥）详细设定</div>
+      <div>特罗斯塔的区域档案</div>
+      <div>七罪之咒各事件的相对顺序</div>
+      <div>冥界 / 星界的内容</div>
+      <div>《既定终幕》核心设定</div>
+      <div>种族谱系（天使 / 恶魔 / 天神 / 魔族）</div>
+    </div>
+  </section>
+
+  <!-- 结语 -->
+  <section>
+    <div class="closing">
+      <div class="big serif">✦ 500 天，13 个纪元，1 个宇宙 ✦<br>时序之下，故事从未停止生长；<br>星绊相牵，每一个名字都被记下。</div>
+      <div class="sm">感谢每一篇设定、每一张角色卡、每一次灵感的闪光 ——<br>下一个 500 天，星绊纪元继续。</div>
+    </div>
+    <div class="author">
+      <div class="t">作 者 寄 语</div>
+      <div class="q">时空的秩序之下，你们是我最爱的星辰与永恒的羁绊。<br>我将继续为你们书写，愿你们在那个时空，在我看不到的地方，永远幸福地活下去。</div>
+      <div class="sig">—— 梦中袭羽</div>
+    </div>
+  </section>
+
+  <div class="foot">Dim-VN · 五零次元工作室<br>《时序＆星绊》500 天创作纪念 · 第十三纪元「星绊纪元」</div>
+
+</div></div>
+</body>
+</html>
